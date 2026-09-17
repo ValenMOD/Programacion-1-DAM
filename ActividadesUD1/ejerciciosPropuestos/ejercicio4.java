@@ -11,14 +11,19 @@ public class ejercicio4 {
 		int x = 5;
 		int y = 1;
 		
+		System.out.println("\"x\" antes valía " + x);
+		System.out.println("\"y\" antes valía " + y);
+
+		
+		
 		int x1 = x; //Creamos las variable "x1" y "y1" como auxiliares, de modo que se le asigna el valor de su variable "original"
 		int y1 = y; //y luego ese mismo valor se le asigna a la variable opuesta.
 		
 		x = y1;
 		y = x1;
 		
-		System.out.println(x);
-		System.out.println(y);
+		System.out.println("Ahora, \"x\" vale " + x);
+		System.out.println("Ahora, \"y\" vale " + y);
 	}
 
 }

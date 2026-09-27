@@ -26,7 +26,7 @@ public class Ejercicio1 {
 		
 		System.out.println("Indica el valor \'c\': ");
 		c = lector.nextFloat();//El valor que introduzca el usuario se guardará en la variable "c".
-		
+		lector.close();//Es una buena práctica cerrar la lectura por teclado ya que no la vamos a seguir utilizando en este programa.
 		
 		a*=a;//Elevamos cada número a su raíz cuadrada
 		b*=b;

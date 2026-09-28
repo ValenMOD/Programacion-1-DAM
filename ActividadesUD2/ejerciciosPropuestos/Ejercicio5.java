@@ -9,7 +9,7 @@ public class Ejercicio5 {
 
 		//Programa que calcula la letra del DNI según las siguientes instrucciones:
 		//a. Tomamos el número completo de hasta 8 cifras de nuestro DNI, lo dividimos entre 23 y nos quedamos con el resto de dicha división.
-		//b. El resultado anterior es un número entre 0 y 22. A cada uno de estos posibles números le corresponde una letra
+		//b. El resultado anterior es un número entre 0 y 22. A cada uno de estos posibles números le corresponde una letra.
 
 		
 		char letra[] = {'T' , 'R' , 'W' , 'A' , 'G' , 'M' , 'Y' , 'F' , 'P' , 'D' , 'X' , 'B' , 'N' , 'J' , 'Z' , 'S' , 'Q' , 'V' , 'H' , 'L' , 'C' , 'K' , 'E'};
@@ -21,7 +21,8 @@ public class Ejercicio5 {
 		dni = lector.nextInt();
 		lector.close();
 		
-		int restoDni = (char) (dni%23);
+		int restoDni = (char) (dni%23);//El resto se guarda como un entero ya que puede que almacene dos caracteres
+									  //y la variable "char" solo almacena un caracter.
 		char letraDni = letra[restoDni];
 		System.out.println("A tu DNI le corresponde la letra: " + letraDni);
 		

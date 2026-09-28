@@ -81,6 +81,7 @@ public class Ejercicio7 {
 		//e. Solicitar al usuario una letra e indicar en qué posición se encuentra.
 
 		Scanner lector = new Scanner(System.in);
+		lector.close();
 		
 		System.out.println("Indica una letra y el sistema te dirá su posición.");
 		String sLetraABuscar = lector.next();

@@ -58,21 +58,23 @@ public class Ejercicio2 {
 		 *
 		 */
 		
-		Scanner lector = new Scanner(System.in);
+		Scanner lector = new Scanner(System.in); //Permitimos que el usuario pueda introducir datos.
 		System.out.println("Introduce el VIN de tu vehículo.");
 		
 		String vin = lector.next();
-		String numerosVin = vin.substring(11 , 17);
+		
+		
+		//Probablemente se introducirá un modo de verificar que los últimos caracteres del VIN sean solo números. Asegurandonos de que sea si o si un código alfanumérico.
+		
+		//String numerosVin = vin.substring(11 , 17);
+		//System.out.println(numerosVin);
+		//System.out.println(vin);
 		
 		
 		
-		
-		System.out.println(numerosVin);
-		System.out.println(vin);
-		
-		while(vin.length() != 17){
+		while(vin.length() != 17){ //Con este bucle comprobamos que el VIN se compone de exactamente 17 caracteres.
 			System.out.println("Error. Introduce tu VIN de la forma adecuada");
-			vin = lector.next();
+			vin = lector.next(); //En caso de que el usuario falle, se le da la oportunidad de volver a ingresar el VIN.
 		}
 		System.out.println("VIN introducido correctamente.");
 		
@@ -80,7 +82,7 @@ public class Ejercicio2 {
 		
 		// A. Número de caracteres introducidos.
 		
-			int caracteresIntroducidos = vin.length();
+			int caracteresIntroducidos = vin.length(); //Medimos la longitud del String "vin".
 			System.out.println("Tu VIN se compone de " + caracteresIntroducidos + " caracteres.");
 		
 		
@@ -88,7 +90,7 @@ public class Ejercicio2 {
 		// B. Mostrar posición de carácter I, O, Q y Ñ , si no están mostrará el valor -1.
 		
 		
-			int posicionCaracter = vin.indexOf("I");
+			int posicionCaracter = vin.indexOf("I"); //El sistema buscará en el String "vin" el caracter que le pidamos. En caso de no encontrarlo, "indexOf" nos devolverá como resultado "-1".
 			int posicionCaracter1 = vin.indexOf("O");
 			int posicionCaracter2 = vin.indexOf("Q");
 			int posicionCaracter3 = vin.indexOf("Ñ");
@@ -102,10 +104,10 @@ public class Ejercicio2 {
 		
 		// C. El WMI , el VDS y el VIS.
 		
-			String wmi = vin.substring(0 , 3);
+			String wmi = vin.substring(0 , 3); //Como se aprecia en la explicación del ejercicio, el WMI se compone de los primeros caracteres por lo que el sistema separará esos caracteres y los interpretará como el WMI.
 			System.out.println("El WMI de tu vehículo es: " + wmi);
 		
-			String vds = vin.substring(3 , 9);
+			String vds = vin.substring(3 , 9); //Igual que el ejemplo anterior.
 			System.out.println("El VDS de tu vehículo es: " + vds);
 			
 			String vis = vin.substring(9 , 17);
@@ -115,19 +117,22 @@ public class Ejercicio2 {
 			
 		// D. Validación de EEUU: Mostrar true si la cadena comienza por "1", y false si no es así.
 			
-			boolean esEeuu = false;
+			boolean esEeuu = false; //Declaramos una variable de tipo boolean que estará en "false".
 			
-			if(vin.startsWith("1")){
-				esEeuu = true;
+			if(vin.startsWith("1")){ //El sistema verificará que el VIN empieza por un 1.
+				esEeuu = true; //En caso de que el VIN empiece por un 1. La variable pasará a ser "true" y lo informará al usuario.
 				System.out.println("El resultado del calculo es: " + esEeuu + ". Tu vehículo es de Estados Unidos.");
 			}
-			else {
+			else { //En caso de que la condición no se cumpla, el sistema no cambiará de valor la variable booleana e informará al usuario de ello.
 				System.out.println("El resultado del calculo es: " + esEeuu + ". Tu vehículo NO es de Estados Unidos.");
 			}
 			
 			
 			
 		// E. Nº de producción del fabricante.
+			
+			String numeroFabricante = vin.substring(11 , 17); //Al igual que en el apartado "C", sabemos que el número del fabricante son los últimos 6 caracteres por lo que el sistema mirará el VIN e imprimirá los últimos 6 caracteres.
+			System.out.println("El número de producción del fabricante es: " + numeroFabricante);
 			
 			
 			

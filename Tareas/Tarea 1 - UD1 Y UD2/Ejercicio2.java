@@ -62,16 +62,7 @@ public class Ejercicio2 {
 		System.out.println("Introduce el VIN de tu vehículo.");
 		
 		String vin = lector.next();
-		
-		
-		//Probablemente se introducirá un modo de verificar que los últimos caracteres del VIN sean solo números. Asegurandonos de que sea si o si un código alfanumérico.
-		
-		//String numerosVin = vin.substring(11 , 17);
-		//System.out.println(numerosVin);
-		//System.out.println(vin);
-		
-		
-		
+			
 		while(vin.length() != 17){ //Con este bucle comprobamos que el VIN se compone de exactamente 17 caracteres.
 			System.out.println("Error. Introduce tu VIN de la forma adecuada");
 			vin = lector.next(); //En caso de que el usuario falle, se le da la oportunidad de volver a ingresar el VIN.

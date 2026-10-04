@@ -30,7 +30,7 @@ public class Ejercicio3 {
 		System.out.println("Introduce tu correo electrónico institucional.");
 		String correo = lector.next();
 		
-		
+
 		
 		// A. Nombre de usuario: Todo lo que esté antes del símbolo @.
 		
@@ -66,8 +66,14 @@ public class Ejercicio3 {
 			
 		//D. Posición del símbolo @ y del primer punto después del @.
 	
-
+			int posicionArroba = correo.indexOf("@");
+			System.out.println("El \"arroba\" (\"@\") está en la posición: " + posicionArroba);
 			
+			int posicionPuntoArroba = dominioCompleto.indexOf(".");
+			System.out.println("El primer punto después del \"@\" contando después del arroba está en la posición: " + posicionPuntoArroba);
+			
+			int posicionPunto = posicionArroba + posicionPuntoArroba + 1;
+			System.out.println("El primer punto después del \"@\" contando todo el String está en la posición: " + posicionPunto);
 	}
 
 }

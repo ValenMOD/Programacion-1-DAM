@@ -20,75 +20,96 @@ public class Ejercicio4 {
 		Scanner lector = new Scanner(System.in);
 		System.out.println("Introduce la tasa por hora.");
 		
-		float tasaHora = lector.nextFloat();
+		float tasaHora = lector.nextFloat(); //El usuario introduce la tasa por hora.
 		
 		System.out.println("Introduce las horas trabajadas.");
 
-		float horasTrabajadas = lector.nextFloat();
+		float horasTrabajadas = lector.nextFloat(); //El usuario introduce el total de las horas trabajadas.
 		System.out.println();
 		
 		System.out.println("Tasa por hora: " + tasaHora);
 		System.out.println("Horas trabajadas: " + horasTrabajadas);
 		System.out.println();
 		
-		
-		float sueldoSinExtra = horasTrabajadas * tasaHora;
-		System.out.printf("Tu sueldo sin extras es de: %.2f" , sueldoSinExtra);
-		System.out.println();
-		System.out.println();
-		
-		float sueldoBruto = sueldoSinExtra;
+		float impuesto = 0.90f; //Impuesto que se le va a aplicar a la diferencia del sueldo respecto a los 300€.
 		
 		
-		
-		if(horasTrabajadas > 38) {
+		if(horasTrabajadas <= 38) { //Si las horas trabajadas son inferiores o igual a 38, no se aplicarán extras.
+			float sueldoSinExtra = horasTrabajadas * tasaHora;
+			System.out.printf("Tu sueldo sin extras es de: %.2f" , sueldoSinExtra);
+			System.out.println();
+			System.out.println();
 			
-			float horasExtra = horasTrabajadas - 38;
+			float sueldoBruto = sueldoSinExtra;
+			
+			if(sueldoBruto <= 300) { //Si el sueldo es igual o inferior a los 300€, no se aplicará ningún impuesto.
+				System.out.printf("Tu sueldo neto es de: %.2f" , sueldoBruto);
+			}
+			else { //En caso de que el sueldo bruto supere los 300€, se aplicará un impuesto del 10% sobre el excedente.
+				
+				System.out.println();
+				System.out.println("Tu sueldo, al superar los 300€, debe pagar un 10% de impuestos sobre la diferencia.");
+				System.out.println();
+				
+				
+				float diferencia = sueldoBruto - 300;
+				System.out.printf("La diferencia es de: %.2f" , diferencia);
+				System.out.println();
+				
+				float sueldoNeto = 300 + (diferencia * impuesto);
+				System.out.printf("Tu sueldo neto es de: %.2f" , sueldoNeto);
+				System.out.println();
+			}
+			
+		}
+		
+		
+		if(horasTrabajadas > 38) { //Si las horas trabajadas son superiores a 38, se hará el calculo adicional de las horas extra.
+			
+			float horasExtra = horasTrabajadas - 38; //Las horas extra se calculan restando las horas totales de trabajo menos 38.
 			System.out.printf("Horas extra: %.2f" , horasExtra);
 			System.out.println();
 			
-			float tasaExtra = tasaHora * 1.50f;
+			float tasaExtra = tasaHora * 1.50f; //Al hacer horas extra, la tasa por hora aumenta en las horas extra trabajadas.
 			System.out.printf("Tasa extra: %.2f" , tasaExtra);
 			System.out.println();
 			
-			float sueldoExtra = horasExtra * tasaExtra;
+			float sueldoExtra = horasExtra * tasaExtra; //Si multiplicamos las horas extra por la tasa extra, tendremos el extra que se sumará al sueldo "normal" (el que corresponde sin hacer extras).
 			System.out.printf("El extra de las horas trabajadas es de: %.2f" , sueldoExtra);
 			System.out.println();
 			System.out.println();
 			
-			sueldoBruto = sueldoSinExtra + sueldoExtra;
-			System.out.printf("Tu sueldo bruto es de: %.2f" , sueldoBruto);
+			float sueldoSinExtra = 38 * tasaHora;
+			System.out.printf("Tu sueldo sin extras es de: %.2f" , sueldoSinExtra);
 			System.out.println();
+			
+			float sueldoBrutoConExtra = sueldoSinExtra + sueldoExtra;
+			System.out.printf("Tu sueldo bruto es de: %.2f" , sueldoBrutoConExtra);
+			System.out.println();
+			
+			
+			if(sueldoBrutoConExtra <= 300) { //Al igual que antes, en caso de que el sueldo supere los 300€ se cobrará un impuesto sobre el importe que supere ese monto.
+				System.out.printf("Tu sueldo neto es de: %.2f" , sueldoBrutoConExtra);
+			}
+			else {
+				
+				System.out.println();
+				System.out.println("Tu sueldo, al superar los 300€, debe pagar un 10% de impuestos sobre la diferencia.");
+				System.out.println();
+				
+				
+				float diferencia = sueldoBrutoConExtra - 300;
+				System.out.printf("La diferencia es de: %.2f" , diferencia);
+				System.out.println();
+				
+				float sueldoNeto = 300 + (diferencia * impuesto);
+				System.out.printf("Tu sueldo neto es de: %.2f" , sueldoNeto);
+				System.out.println();
+			}
+			
 			
 		}
-		
-		
-		
-		float impuesto = 0.90f;
-		
-		
-		if(sueldoBruto <= 300) {
-			System.out.printf("Tu sueldo neto es de: %.2f" , sueldoBruto);
-		}
-		else {
-			
-			System.out.println();
-			System.out.println("Tu sueldo, al superar los 300€, debe pagar un 10% de impuestos sobre la diferencia.");
-			System.out.println();
-			
-			
-			float diferencia = sueldoBruto - 300;
-			System.out.printf("La diferencia es de: %.2f" , diferencia);
-			System.out.println();
-			
-			float sueldoNeto = 300 + (diferencia * impuesto);
-			System.out.printf("Tu sueldo neto es de: %.2f" , sueldoNeto);
-			System.out.println();
-		}
-		
-		
-		
-		
+
 		
 	}
 

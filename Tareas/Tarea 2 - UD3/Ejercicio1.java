@@ -38,8 +38,8 @@ public class Ejercicio1 {
 		 */
 		
 		
-		StringBuilder claves[] = new StringBuilder[15];
-				
+		StringBuilder claves[] = new StringBuilder[15]; //Creamos el array con los 15 Strings y los inicializamos de modo que podamos trabajar con ellos.		
+		
 		int i = 0;
 		
 		for(i = 0; i < claves.length;i++) {
@@ -49,7 +49,7 @@ public class Ejercicio1 {
 			}
 		
 		
-		Scanner lector = new Scanner(System.in);
+		//Creamos los arrays que contienen los caracteres necesarios para hacer la clave. Creamos tambien las variables que nos van a servir a generar las credenciales.
 		
 		Random random = new Random();
 		
@@ -58,7 +58,7 @@ public class Ejercicio1 {
 		char numeros[] = {'0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9'};
 		char caracterEspecial[] = {'@' , '#' , '$' , '%' , '&'};
 		
-		
+
 		
 		int j = 0;
 		
@@ -67,87 +67,132 @@ public class Ejercicio1 {
 		boolean tieneNum = false;
 		boolean tieneCar = false;
 		
-		for(i = 0; i < 4;i++) {
+		boolean longitud = false;
+		boolean caracteres = false;
+		
+		
+		for(i = 0; i < 4;i++) { //Entramos en este bucle cada vez que queramos crear una nueva clave teniendo como limite la cuarta clave generada de forma automática.
 			
-			do {
+			
+			
+			do { //Mientras alguna de las condiciones no se cumplan (que tenga entre 8 y 16 carcteres y que contenga al menos una minúscula/mayúscula/número/caracter especial), el bucle se ejecutará una y otra vez hasta que la contraseña sea adecuada a lo que se pide.
 				
 				tieneMin = false;
 				tieneMay = false;
 				tieneNum = false;
 				tieneCar = false;
 				
-				for(j = 0;j <= 16;j++) {
+				longitud = false;
+				caracteres = false;
 				
-					int aleatorio = random.nextInt(1 , 6);
+				claves[i].delete(0, 17); //Para evitar que la contraseña se sobrecargue y exceda el límite de caracteres, cuando entre en el bucle, se borrará lo que contenga dentro (en este caso no contiene nada).
+				
+				for(j = 0;j < 16;j++) { //Nos aseguramos de que el bucle asignará como máximo 16 caracteres.
 					
+					//Una vez definida la posición del array, inicializadas las booleanas y asegurandonos de que la contraseña no contiene nada, entraremos en este bucle que va a ir posición por posición asignando un caracter.
 					
-					if(aleatorio == 1) {
+				
+					if(claves[i].length() < 16) { //En caso de que la clave tenga menos de 16 caracteres, le podremos asignar un nuevo carcter.
+					
 						
-						int aleatorioMin = random.nextInt(0 , minuscula.length);
+						int aleatorio = random.nextInt(1 , 6);
+						//Se va a seleccionar un número aleatorio entre 1 y 5 y se guardará en la variable "aleatorio". Según lo que guarde esa variable el programa hará una cosa o la otra. Las opciones son:
 						
-						claves[i].append(minuscula[aleatorioMin]);
-						tieneMin = true;
 						
-						} //Cierre del "if" que asigna minusculas.
-					
-					
-					if(aleatorio == 2) {
+						if(aleatorio == 1) { //En caso de que "aleatorio" sea 1, irá a la matríz de letras minúsculas y de forma aleatoria va a elegir un número. El caracter que esté en la posición de ese número elegido se le asignará a la posición correspondiente de la clave.
+							
+							//Por ejemplo: si aleatorio vale 6, el programa se va a dirigir a la posición 6 del array de letras minúsculas. En este caso, la posición 6 coincide con el caracter 'g' por lo que 'g' se sumará como un valor de la clave en la posición que le corresponda en ese momento.
+							
+							
+							int aleatorioMin = random.nextInt(0 , minuscula.length); 
+							
+								claves[i].append(minuscula[aleatorioMin]);
+								tieneMin = true; //Una vez que se agrega el caracter a la clave, cambiamos el estado de la booleana a "true" ya que, independientemente de que luego se sumen nuevas minúsculas a la clave, sabemos que por lo menos hay una.
+							
+							} //Cierre del "if" que asigna minusculas.
 						
-						int aleatorioMay = random.nextInt(0 , mayuscula.length);
 						
-						claves[i].append(mayuscula[aleatorioMay]);
-						tieneMay = true;
-	
-						} //Cierre del "if" que asigna mayusculas.
-					
-					
-					if(aleatorio == 3) {
-	
-						int aleatorioNum = random.nextInt(0 , numeros.length);
-	
-						claves[i].append(numeros[aleatorioNum]);
-						tieneNum = true;
-	
-						} //Cierre del "if" que asinga números.
-					
-					
-					if(aleatorio == 4) {
+						//Hacemos lo mismo con las mayúsculas, números y caracteres especiales:
 						
-						int aleatorioCar = random.nextInt(0 , caracterEspecial.length);
+						if(aleatorio == 2) {
+							
+							int aleatorioMay = random.nextInt(0 , mayuscula.length);
+							
+								claves[i].append(mayuscula[aleatorioMay]);
+								tieneMay = true;
+		
+							} //Cierre del "if" que asigna mayusculas.
 						
-						claves[i].append(caracterEspecial[aleatorioCar]);
-						tieneCar = true;
-	
-						} //Cierre del "if" que asigna caracteres especiales.
+						
+						if(aleatorio == 3) {
+		
+							int aleatorioNum = random.nextInt(0 , numeros.length);
+		
+								claves[i].append(numeros[aleatorioNum]);
+								tieneNum = true;
+		
+							} //Cierre del "if" que asinga números.
+						
+						
+						if(aleatorio == 4) {
+							
+							int aleatorioCar = random.nextInt(0 , caracterEspecial.length);
+							
+								claves[i].append(caracterEspecial[aleatorioCar]);
+								tieneCar = true;
+		
+							} //Cierre del "if" que asigna caracteres especiales.
+						
+						
+						//En caso de que "aleatorio" valga 5 la cosa cambia ya que se puede dar que no todas las credenciales sean de 16 caracteres si cumplen con lo necesario.
+						//En esta situación el programa va a entrar a ver las conidicones descritas más abajo:
+						
+						if(aleatorio == 5) {
+							
+							//En caso de que la clave tenga entre 8 y 16 caracteres, sabemos que cumple con la regla de la longitud de la misma, por lo que la booleana de "longitud" pasa a ser "true".
+							if(claves[i].length() >= 8 && 16 >= claves[i].length()) {	
+								
+								longitud = true;
+								
+								//En caso de que esto se cumpla, el programa verá si contiene al menos un caracter de cada tipo. En caso de que si, su booleana pasará a "true" y saldrá del programa.
+								if(tieneMin && tieneMay && tieneNum && tieneCar) {
+									
+									caracteres = true;
+									break;
+									} //Cierre del "if" que evalúa que la credencial contenga todos los tipos de caracteres.
+								} //Cierre del "if" que verifica el intervalo de la cantidad de caracteres.
+							
+							} //Cierre del "if" si "aleatorio" da 5.
+						
+						}//Cierre del "if" que evalúa que hayan 16 caracteres o menos.
 					
 					
-					if(aleatorio == 5) {
+					//En caso de que "aleatorio" nunca valga 5, se comprobarán las condiciones para que la clave de 16 caracteres sea válida.
+					if(claves[i].length() >= 8 && 16 >= claves[i].length()) {
+						longitud = true;
 						
-						if(claves[i].length() >= 8 || 16 <= claves[i].length()) {	
-							if(tieneMin && tieneMay && tieneNum && tieneCar) {
-								break;
-								}
-							} //Cierre del "if" que verifica la cantidad de caracteres.
 						
-						} //Cierre del "if" si "aleatorio" da 5.
-					
+						if(tieneMin && tieneMay && tieneNum && tieneCar) {
+							caracteres = true;
+							break;
+							}
+						}
 					
 					} //Cierre bucle "for" que asigna caracteres.
 			
-				System.out.println(tieneMin);
-				System.out.println(tieneMay);
-				System.out.println(tieneNum);
-				System.out.println(tieneCar);
 				
-			} //Cierre del "do" que asegura que las contraseñas tengan al menos, un caracter de cada categoria.
-			while(tieneMin = true && tieneMay = true && tieneNum = true && tieneCar = true);
+				
+				} //Cierre del "do" que asegura que las contraseñas tengan al menos, un caracter de cada categoria.
+			while(!longitud || !caracteres);
 		
 			
 			System.out.println("La clave de la posición " + i + " es: " + claves[i]); //Imprimir clave.
 			
 			
-			} //Cierre bucle "for" para cada contraseña
+			} //Cierre bucle "for" para cada contraseña.
 		
+		
+			
 		
 		/* A. Insertar nueva clave válida: Busca la primera posición libre (null). Antes de insertarla, el usuario introduce la clave y el algoritmo debe validar obligatoriamente que cumpla todas las siguientes condiciones (sin usar expresiones regulares complejas, usando métodos de String y bucles):
 		 * 		- Longitud mínima de 8 caracteres y máxima de 16.

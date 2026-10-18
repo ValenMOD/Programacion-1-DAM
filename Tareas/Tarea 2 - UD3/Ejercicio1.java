@@ -42,7 +42,7 @@ public class Ejercicio1 {
 		
 		int i = 0;
 		
-		for(i = 0; i < claves.length;i++) {
+		for(i = 0; i < 4;i++) {
 			
 			claves[i] = new StringBuilder();
 			
@@ -188,11 +188,10 @@ public class Ejercicio1 {
 			
 			System.out.println("La clave de la posición " + i + " es: " + claves[i]); //Imprimir clave.
 			
-			
 			} //Cierre bucle "for" para cada contraseña.
 		
 		
-			
+
 		
 		/* A. Insertar nueva clave válida: Busca la primera posición libre (null). Antes de insertarla, el usuario introduce la clave y el algoritmo debe validar obligatoriamente que cumpla todas las siguientes condiciones (sin usar expresiones regulares complejas, usando métodos de String y bucles):
 		 * 		- Longitud mínima de 8 caracteres y máxima de 16.
@@ -202,9 +201,158 @@ public class Ejercicio1 {
 		 *		- No puede contener espacios en blanco.
 		 */
 		
+		Scanner lector = new Scanner(System.in);
 		
+		int intentos = 3;
 		
+		char salir;
+		
+		do {
 			
+			System.out.println();
+			System.out.println("Seleccione una opción:");
+			System.out.println("1. Insertar nueva clave/credencial.");
+			System.out.println("2. Mostrar clave/credencial de forma segura.");
+			System.out.println("3. Calcular Índice de Fortaleza Promedio.");
+		
+			int aux = 0;
+			
+			tieneMin = false;
+			tieneMay = false;
+			tieneNum = false;
+			tieneCar = false;
+			
+			longitud = false;
+			caracteres = false;
+			
+			boolean sitioArray = false;
+			
+			int opcion = lector.nextInt();
 
+			switch(opcion) {
+			
+				case 1:
+					
+					System.out.println("CUIDADO! Si detectamos un espacio en tu nueva clave/credencial estaremos interpretando que quieres introducir dos o más claves al mismo tiempo.");
+					System.out.print("Introduce tu nueva clave/credencial:");
+					
+					intentos = 3;
+					
+					while(intentos != 0 || !longitud || !caracteres) {						
+						
+						
+						for(i = 0;i < claves.length;i++) {
+							
+							if(claves[i] == null) {
+								
+								sitioArray = true;
+								aux = i;
+								break;
+								}
+							}
+						if(!sitioArray) {
+							System.out.println("Memoria llena. No se puede guardad una nueva credencial.");
+							}
+						
+						
+						String clave = lector.next();
+//						StringBuilder claveSB = new StringBuilder(clave);
+//						claves[aux] = claveSB;
+						
+						
+						if(clave.length() >= 8 && 16 >= clave.length()) {
+							
+							longitud = true;
+							System.out.println("Tu clave cumple con la longitud requerida.");
+							
+							for(i = 0;i < clave.length();i++) {
+								
+								
+								for(j = 0;j < minuscula.length;j++) {
+									
+									if(clave.charAt(i) == minuscula[j]) {
+										
+										tieneMin = true;
+										
+										} //Cierre del "if" que evalúa que la clave contenga al menos una minúscula.
+									
+									} //Cierre del bucle que recorre el array de las minúsculas.
+								
+									
+								
+								
+								for(j = 0;j < mayuscula.length;j++) {
+									
+									if(clave.charAt(i) == mayuscula[j]) {
+										
+										tieneMay = true;
+										
+										} //Cierre del "if" que evalúa que la clave contenga al menos una mayúscula.
+									
+									} //Cierre del bucle que recorre el array de las mayúsculas.
+								
+								
+								
+								for(j = 0;j < numeros.length;j++) {
+									
+									if(clave.charAt(i) == numeros[j]) {
+										
+										tieneNum = true;
+										
+										} //Cierre del "if" que evalúa que la clave contenga al menos una mayúscula.
+									
+									} //Cierre del bucle que recorre el array de las mayúsculas.
+								
+								
+								
+								for(j = 0;j < caracterEspecial.length;j++) {
+									
+									if(clave.charAt(i) == caracterEspecial[j]) {
+										
+										tieneCar = true;
+										
+										} //Cierre del "if" que evalúa que la clave contenga al menos una mayúscula.
+									
+									} //Cierre del bucle que recorre el array de las mayúsculas.
+								
+								
+								
+//								if(clave.indexOf(" ") >= 0) {
+//									
+//									System.out.println("Tu clave no debe contener espacios.");
+//									intentos--;
+//									System.out.println("Te quedan " + intentos + " intentos.");
+//									caracteres = false;
+//									
+//									}
+								
+								
+								} //Cierre del bucle que recorre caracter por caracter de la credencial.
+							
+
+							
+							} //Cierre del "if" que evalúa que se cumpla la norma de longitud de la clave.
+						else {
+							System.out.println("Tu clave/credencial debe tener entre 8 y 16 caracteres.");
+							intentos--;
+							System.out.println("Te quedan " + intentos + " intentos.");
+						
+							} //Cierre del "else" en caso de que la clave no contenga entre 8 y 16 caracteres.
+						
+						} //Cierre del bucle "while" que administra los intentos.
+			
+					
+					
+					} //Cierre del "switch"
+			
+			
+//			System.out.println("Desea salir del programa? S/N.");
+//			salir = lector.next().charAt(0);
+			
+			} //Cierre del "do" que muestra las opciones.
+		while(intentos == 0);
+	
+			
 	}
+	
 }

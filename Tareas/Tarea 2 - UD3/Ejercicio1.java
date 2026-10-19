@@ -327,16 +327,6 @@ public class Ejercicio1 {
 								
 								
 								
-//								if(clave.indexOf(" ") >= 0) {
-//									
-//									System.out.println("Tu clave no debe contener espacios.");
-//									intentos--;
-//									System.out.println("Te quedan " + intentos + " intentos.");
-//									caracteres = false;
-//									
-//									}
-								
-								
 								} //Cierre del bucle que recorre caracter por caracter de la credencial.
 							
 							
@@ -383,21 +373,31 @@ public class Ejercicio1 {
 					
 					System.out.println("Inserte la clave/credencial que desea ver.");
 					String claveABuscar = lector.next();
-					StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
-
-					System.out.println("Tu clave es:" + sbClaveABuscar);
+//					StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
+					
+					boolean encontrada = false;
+					
+					aux = 0;
 					
 					for(i = 0; i < claves.length;i++) {
 						
-						System.out.println(sbClaveABuscar);
-						System.out.println(claves[i]);
 						
-						if(sbClaveABuscar.equals(claves[i])) {
+						if(claves[i] != null) {
+							aux = i;
+							}
+						
+						String original = claves[aux].toString();
+												
+						
+						if(claveABuscar.equalsIgnoreCase(original)) {
 							
 							System.out.println("Clave encontrada.");
-							sbClaveABuscar.replace(1, claves[i].length() - 1, "*");
+							StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
+							sbClaveABuscar.replace(1, claves[aux].length() - 1, "*");
 							System.out.println("Tu clave mostrada de forma segura es: " + sbClaveABuscar);
+							
 							}
+				
 						
 						}
 					

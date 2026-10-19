@@ -205,8 +205,9 @@ public class Ejercicio1 {
 		
 		int intentos = 3;
 		
-		char salir;
+		String salir = null;
 		
+		boolean claveCorrecta = false;
 		do {
 			
 			System.out.println();
@@ -225,6 +226,7 @@ public class Ejercicio1 {
 			longitud = false;
 			caracteres = false;
 			
+			
 			boolean sitioArray = false;
 			
 			int opcion = lector.nextInt();
@@ -233,12 +235,12 @@ public class Ejercicio1 {
 			
 				case 1:
 					
-					System.out.println("CUIDADO! Si detectamos un espacio en tu nueva clave/credencial estaremos interpretando que quieres introducir dos o más claves al mismo tiempo.");
-					System.out.print("Introduce tu nueva clave/credencial:");
+//					System.out.println("CUIDADO! Si detectamos un espacio en tu nueva clave/credencial estaremos interpretando que quieres introducir dos o más claves al mismo tiempo.");
+//					System.out.print("Introduce tu nueva clave/credencial:");
 					
 					intentos = 3;
 					
-					while(intentos != 0 || !longitud || !caracteres) {						
+					while(intentos > 0 && (!longitud || !caracteres)) {						
 						
 						
 						for(i = 0;i < claves.length;i++) {
@@ -255,10 +257,18 @@ public class Ejercicio1 {
 							}
 						
 						
-						String clave = lector.next();
-//						StringBuilder claveSB = new StringBuilder(clave);
-//						claves[aux] = claveSB;
+						System.out.println("CUIDADO! Tu clave debe tener una minúscula, una mayúscula, un número y un caracter especial. No puede contener espacios.");
+						System.out.print("Introduce tu nueva clave/credencial:");
 						
+						String clave = lector.next();
+
+						tieneMin = false;
+						tieneMay = false;
+						tieneNum = false;
+						tieneCar = false;
+						
+						longitud = false;
+						caracteres = false;
 						
 						if(clave.length() >= 8 && 16 >= clave.length()) {
 							
@@ -329,28 +339,73 @@ public class Ejercicio1 {
 								
 								} //Cierre del bucle que recorre caracter por caracter de la credencial.
 							
-
+							
 							
 							} //Cierre del "if" que evalúa que se cumpla la norma de longitud de la clave.
 						else {
 							System.out.println("Tu clave/credencial debe tener entre 8 y 16 caracteres.");
 							intentos--;
 							System.out.println("Te quedan " + intentos + " intentos.");
-						
 							} //Cierre del "else" en caso de que la clave no contenga entre 8 y 16 caracteres.
 						
+						
+						if(longitud) {
+							if(tieneMin && tieneMay && tieneNum && tieneCar) {
+								caracteres = true;
+								System.out.println("Tu clave cumple con los caracteres requeridos.");
+								}
+							else {
+								System.out.println("Tu clave debe contener al menos una minúscula, una mayúscula, un número y un caracter especial (@, #, $, %, &).");
+								intentos--;
+								System.out.println("Te quedan " + intentos + " intentos.");
+								}
+							}
+						
+						
+						if(longitud && caracteres) {
+							
+							claveCorrecta = true;
+							StringBuilder claveSB = new StringBuilder(clave);
+							claves[aux] = claveSB;
+							System.out.println("Tu clave/credencial se guardó correctamente en la posición " + aux);
+							}
+						
+						for(i = 0;i < claves.length;i++) {
+							System.out.println(claves[i]);
+							}
+						
 						} //Cierre del bucle "while" que administra los intentos.
-			
+				break;
 					
+					
+					
+				case 2:
+					
+					System.out.println("Inserte la clave/credencial que desea ver.");
+					String claveABuscar = lector.next();
+					StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
+
+					System.out.println("Tu clave es:" + sbClaveABuscar);
+					
+					for(i = 0; i < claves.length;i++) {
+						
+						System.out.println(sbClaveABuscar);
+						System.out.println(claves[i]);
+						
+						if(sbClaveABuscar.equals(claves[i])) {
+							
+							System.out.println("Clave encontrada.");
+							sbClaveABuscar.replace(1, claves[i].length() - 1, "*");
+							System.out.println("Tu clave mostrada de forma segura es: " + sbClaveABuscar);
+							}
+						
+						}
 					
 					} //Cierre del "switch"
 			
 			
-//			System.out.println("Desea salir del programa? S/N.");
-//			salir = lector.next().charAt(0);
-			
 			} //Cierre del "do" que muestra las opciones.
-		while(intentos == 0);
+		while(intentos == 0 || claveCorrecta);
 	
 			
 	}

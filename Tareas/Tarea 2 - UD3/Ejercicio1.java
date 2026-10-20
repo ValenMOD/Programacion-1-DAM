@@ -233,7 +233,7 @@ public class Ejercicio1 {
 
 			switch(opcion) {
 			
-				case 1:
+				case 1: //Insertar nueva clave/credencial.
 					
 //					System.out.println("CUIDADO! Si detectamos un espacio en tu nueva clave/credencial estaremos interpretando que quieres introducir dos o más claves al mismo tiempo.");
 //					System.out.print("Introduce tu nueva clave/credencial:");
@@ -360,46 +360,147 @@ public class Ejercicio1 {
 							System.out.println("Tu clave/credencial se guardó correctamente en la posición " + aux);
 							}
 						
-						for(i = 0;i < claves.length;i++) {
-							System.out.println(claves[i]);
-							}
 						
 						} //Cierre del bucle "while" que administra los intentos.
 				break;
 					
 					
 					
-				case 2:
+				case 2: //Mostrar clave/credencial de forma segura.
 					
 					System.out.println("Inserte la clave/credencial que desea ver.");
 					String claveABuscar = lector.next();
-//					StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
 					
-					boolean encontrada = false;
+					boolean claveEncontrada = false;
 					
 					aux = 0;
 					
-					for(i = 0; i < claves.length;i++) {
+					for(i = 0; i < claves.length;i++) { //El bulce recorre todas las posiciones del array para ver cuales están vacías y cuales no.
 						
-						
-						if(claves[i] != null) {
+						if(claves[i] != null) { //Guardará las posiciones no vacías. La última posición no vacía se guardará en "aux".
+							
 							aux = i;
 							}
 						
-						String original = claves[aux].toString();
-												
+						}
+					
+					for(i = 0;i <= aux;i++) { //El bucle recorrerá solo los indicés que no estén vacíos
 						
-						if(claveABuscar.equalsIgnoreCase(original)) {
+						String original = claves[i].toString(); //Convertimos en un String a cada una de las claves para poder comparar si los Strings coinciden.
+												
+						if(claveABuscar.equalsIgnoreCase(original)) { //Se evaluará una condición donde si lo que escribimos coincide con una clave del array (siendo insensible a mayúsculas/minúsculas), está se mostrará de forma segura, reemplazando todo el contenido por asteriscos (*) menos el primer y el último caracter.
 							
-							System.out.println("Clave encontrada.");
-							StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar);
-							sbClaveABuscar.replace(1, claves[aux].length() - 1, "*");
+							claveEncontrada = true; //En caso de que se encuentre la clave, la booleana cambiará su estado.
+							
+							System.out.println("Clave encontrada en la posición " + i + " de " + aux);
+							StringBuilder sbClaveABuscar = new StringBuilder(claveABuscar); //Necesitamos pasar la variable a StringBuilder para hacer uso del método ".replace".
+							
+							char ultimoCaracter = sbClaveABuscar.charAt(sbClaveABuscar.length() - 1); //Guardamos el último caracter de la clave original.
+							int tamanho = sbClaveABuscar.length() - 1; //Guardamos tambien su posición original.
+							
+							
+							for(j = 1;j < sbClaveABuscar.length();j++) { //El bucle irá reemplazando los caracteres de la clave desde la segunda posición hasta la última (ambas incluidas).
+								
+								sbClaveABuscar.replace(j, j+1, "*");
+								
+								}
+							
+							sbClaveABuscar.append(ultimoCaracter); //Una vez reemplazados todos los caracteres, agregamos el último caracter que habíamos guardado antes de entrar en el bucle.
+							sbClaveABuscar.deleteCharAt(tamanho); //Borramos el último caracter cifrado (que al final es el mismo que vamos a mostrar en la última posición).
+							
 							System.out.println("Tu clave mostrada de forma segura es: " + sbClaveABuscar);
 							
 							}
+						
+						
 				
+						}
+						
+					if(!claveEncontrada) { //En caso de que la clave no esté registrada previamente en el sistema, se informará al usuario.
+						System.out.println("No tenemos ningún registro de esa clave/credencial.");
+						}
+					break;
+					
+				case 3: //Calcular Índice de Fortaleza Promedio.
+					
+					for(i = 0; i < claves.length;i++) { //El bucle irá viendo si las posiciones del array no están vacías. "aux" tomará como valor la última posición no vacía.
+						
+						if(claves[i] != null) {
+							
+							aux = i;
+							}
 						
 						}
+					
+					int k;
+					
+					StringBuilder claveMasFuerte = new StringBuilder();
+					int indiceMasFuerte = 0;
+					int posicionMasFuerte = 0;
+					
+					int clavesMayoresACinco = 0;
+					
+					for(i = 0; i <= aux;i++) { //El bucle recorrerá todas las posiciones donde hay una clave almacenada.
+						
+						int indiceFortaleza = 0;
+						
+						for(j = 0; j < claves[i].length();j++) { //Dentro de cada clave, recorrerá cada caracter.
+							
+							char posicion = claves[i].charAt(j);
+							
+							for(k = 0; k < numeros.length;k++) { //Se sumará un punto por cada número que contenga la clave.
+								
+								if(posicion == numeros[k]) {
+									
+									indiceFortaleza++;
+									
+									}
+								}
+								
+							for(k = 0; k < caracterEspecial.length;k++) { //En caso de que contenga caracteres especiales, se sumarán dos puntos por cada uno que tenga.
+								
+								if(posicion == caracterEspecial[k]) {
+									
+									indiceFortaleza = indiceFortaleza + 2;
+									
+									}
+								
+								}
+							
+							
+							} //Bucle que recorre cada caracter de cada clave almacenada.
+						
+						if(claves[i].length() > 10) { //Si la clave contiene más de 10 caracteres, se sumará un punto adicional.
+							indiceFortaleza++;
+							}
+						
+						System.out.println("El Índice de Fortaleza de la clave: " + claves[i] + " es de: " + indiceFortaleza);
+						
+
+						
+						if(indiceMasFuerte < indiceFortaleza) {
+							
+							claveMasFuerte = claves[i];
+							indiceMasFuerte = indiceFortaleza;
+							posicionMasFuerte = i;
+							
+							}
+						
+						if(indiceFortaleza > 5) {
+							
+							clavesMayoresACinco++;
+							
+							}
+						
+						} //Bucle que recorre cada clave almacenada.
+					
+					System.out.println("La clave más fuerte es: \"" + claveMasFuerte + "\" con un índice de fortaleza de \'" + indiceMasFuerte + "\' y que se encuentra en la posición: " + posicionMasFuerte);
+					
+					aux++;
+					
+					float porcentaje = (clavesMayoresACinco / (float)aux) * 100;
+					
+					System.out.println("El porcentaje de claves que superan una puntuación de 5 puntos respecto al total de claves almacenadas es de: " + porcentaje + "%.");
 					
 					} //Cierre del "switch"
 			

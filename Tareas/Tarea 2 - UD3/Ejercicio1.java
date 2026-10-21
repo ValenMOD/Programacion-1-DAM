@@ -199,13 +199,16 @@ public class Ejercicio1 {
 		 * 		- Debe contener al menos un dígito numérico.
 		 * 		- Debe contener al menos un carácter especial del conjunto: @, #, $, %, &.
 		 *		- No puede contener espacios en blanco.
+		 *
+		 *		En caso de que no la cumpla deberá avisar al usuario y solicitar que vuelva a introducir la clave. Después de 3 intentos sale y vuelve a mostrar el menú principal.
+		 * 		En caso de que el array esté lleno también debe informar que ya no se pueden almacenar más claves.
 		 */
 		
 		Scanner lector = new Scanner(System.in);
 		
 		int intentos = 3;
 		
-		String salir = null;
+		boolean claveEncontrada = false;
 		
 		boolean claveCorrecta = false;
 		do {
@@ -215,7 +218,7 @@ public class Ejercicio1 {
 			System.out.println("1. Insertar nueva clave/credencial.");
 			System.out.println("2. Mostrar clave/credencial de forma segura.");
 			System.out.println("3. Calcular Índice de Fortaleza Promedio.");
-		
+			
 			int aux = 0;
 			
 			tieneMin = false;
@@ -235,9 +238,6 @@ public class Ejercicio1 {
 			
 				case 1: //Insertar nueva clave/credencial.
 					
-//					System.out.println("CUIDADO! Si detectamos un espacio en tu nueva clave/credencial estaremos interpretando que quieres introducir dos o más claves al mismo tiempo.");
-//					System.out.print("Introduce tu nueva clave/credencial:");
-					
 					intentos = 3;
 					
 					while(intentos > 0 && (!longitud || !caracteres)) {						
@@ -253,7 +253,8 @@ public class Ejercicio1 {
 								}
 							}
 						if(!sitioArray) {
-							System.out.println("Memoria llena. No se puede guardad una nueva credencial.");
+							System.out.println("Memoria llena. No se puede guardar una nueva credencial.");
+							break;
 							}
 						
 						
@@ -368,10 +369,13 @@ public class Ejercicio1 {
 					
 				case 2: //Mostrar clave/credencial de forma segura.
 					
+					
+		// B. Búsqueda y Máscara de Seguridad: El usuario introduce una palabra o clave. El programa debe buscar en la matriz si existe dicha clave (o si coincide de forma insensible a mayúsculas/minúsculas).
+		// 	  Si la encuentra, debe mostrar en qué índice está e imprimir por pantalla la clave cifrada/oculta (reemplazando por asteriscos * todos los caracteres excepto el primero y el último).
+					
+					
 					System.out.println("Inserte la clave/credencial que desea ver.");
 					String claveABuscar = lector.next();
-					
-					boolean claveEncontrada = false;
 					
 					aux = 0;
 					
@@ -388,7 +392,7 @@ public class Ejercicio1 {
 						
 						String original = claves[i].toString(); //Convertimos en un String a cada una de las claves para poder comparar si los Strings coinciden.
 												
-						if(claveABuscar.equalsIgnoreCase(original)) { //Se evaluará una condición donde si lo que escribimos coincide con una clave del array (siendo insensible a mayúsculas/minúsculas), está se mostrará de forma segura, reemplazando todo el contenido por asteriscos (*) menos el primer y el último caracter.
+						if(claveABuscar.equalsIgnoreCase(original)) { //Se evaluará una condición donde si lo que escribimos coincide con una clave del array (siendo insensible a mayúsculas/minúsculas), esta se mostrará de forma segura, reemplazando todo el contenido por asteriscos (*) menos el primer y el último caracter.
 							
 							claveEncontrada = true; //En caso de que se encuentre la clave, la booleana cambiará su estado.
 							
@@ -410,11 +414,11 @@ public class Ejercicio1 {
 							
 							System.out.println("Tu clave mostrada de forma segura es: " + sbClaveABuscar);
 							
-							}
+							} //Cierre del bucle que evalúa que coincidan la clave con lo que introduce el usuario.
 						
 						
 				
-						}
+						} //Cierre del bucle que recorre los índices no vacíos.
 						
 					if(!claveEncontrada) { //En caso de que la clave no esté registrada previamente en el sistema, se informará al usuario.
 						System.out.println("No tenemos ningún registro de esa clave/credencial.");
@@ -422,6 +426,12 @@ public class Ejercicio1 {
 					break;
 					
 				case 3: //Calcular Índice de Fortaleza Promedio.
+		
+					
+	   /* C. Análisis de Fortaleza Global: El programa recorre todas las claves almacenadas y calcula un "Índice de Fortaleza Promedio".
+		*		- Por cada clave, asigna puntos: +1 por cada dígito, +2 por cada carácter especial, +1 si tiene más de 10 caracteres.
+		*		- Muestra por pantalla la clave más fuerte (la de mayor puntuación), la posición en la que está y el porcentaje de claves que superan una puntuación de 5 puntos respecto al total de claves almacenadas.		
+		*/			
 					
 					for(i = 0; i < claves.length;i++) { //El bucle irá viendo si las posiciones del array no están vacías. "aux" tomará como valor la última posición no vacía.
 						
@@ -434,19 +444,21 @@ public class Ejercicio1 {
 					
 					int k;
 					
-					StringBuilder claveMasFuerte = new StringBuilder();
-					int indiceMasFuerte = 0;
-					int posicionMasFuerte = 0;
+					StringBuilder claveMasFuerte = new StringBuilder(); //Clave con mayor puntuación en el índice.
+					int indiceMasFuerte = 0; //Puntos de la clave más fuerte.
+					int posicionMasFuerte = 0; //Posición de la clave más fuerte.
 					
-					int clavesMayoresACinco = 0;
+					int clavesMayoresACinco = 0; //Número de claves cuyos puntos en el índice son superiores a 5.
 					
 					for(i = 0; i <= aux;i++) { //El bucle recorrerá todas las posiciones donde hay una clave almacenada.
 						
 						int indiceFortaleza = 0;
 						
+						
 						for(j = 0; j < claves[i].length();j++) { //Dentro de cada clave, recorrerá cada caracter.
 							
 							char posicion = claves[i].charAt(j);
+							
 							
 							for(k = 0; k < numeros.length;k++) { //Se sumará un punto por cada número que contenga la clave.
 								
@@ -474,11 +486,11 @@ public class Ejercicio1 {
 							indiceFortaleza++;
 							}
 						
-						System.out.println("El Índice de Fortaleza de la clave: " + claves[i] + " es de: " + indiceFortaleza);
+						System.out.println("En la posición " + i + ", el Índice de Fortaleza de la clave: " + claves[i] + " es de: " + indiceFortaleza);
 						
 
 						
-						if(indiceMasFuerte < indiceFortaleza) {
+						if(indiceMasFuerte < indiceFortaleza) { //En cada paso del bucle, se evaluará la condición de que si el índice de fortaleza en ese momento es mayor a la variable "indiceMasFuerte" (inicializada en "0".), esta tomará su valor. De igual modo con las variables "claveMasFuerte" y "posicionMasFuerte".
 							
 							claveMasFuerte = claves[i];
 							indiceMasFuerte = indiceFortaleza;
@@ -486,7 +498,7 @@ public class Ejercicio1 {
 							
 							}
 						
-						if(indiceFortaleza > 5) {
+						if(indiceFortaleza > 5) { //En caso de que el índice actual sea mayor que 5, la variable clavesMayoresACinco pasará a valer su valor anterior más uno.
 							
 							clavesMayoresACinco++;
 							
@@ -496,17 +508,17 @@ public class Ejercicio1 {
 					
 					System.out.println("La clave más fuerte es: \"" + claveMasFuerte + "\" con un índice de fortaleza de \'" + indiceMasFuerte + "\' y que se encuentra en la posición: " + posicionMasFuerte);
 					
-					aux++;
+					aux++; //Aumentamos en uno la variable auxiliar ya que el valor que contenía antes eran las posiciones no vacías (con 4 posiciones NO VACÍAS, su valor era de 3 ya que empezaba a contar desde 0). Cambiamos esto para poder hacer el cálculo de cuantas posiciones superan los 5 puntos del índice respecto a las posiciones almacenadas.
 					
 					float porcentaje = (clavesMayoresACinco / (float)aux) * 100;
 					
 					System.out.println("El porcentaje de claves que superan una puntuación de 5 puntos respecto al total de claves almacenadas es de: " + porcentaje + "%.");
+					break;
 					
 					} //Cierre del "switch"
 			
-			
 			} //Cierre del "do" que muestra las opciones.
-		while(intentos == 0 || claveCorrecta);
+		while(intentos == 0 || claveCorrecta || !claveEncontrada);
 	
 			
 	}

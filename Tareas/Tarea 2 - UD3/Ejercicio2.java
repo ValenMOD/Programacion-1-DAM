@@ -1,5 +1,6 @@
 package valentín;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ejercicio2 {
@@ -35,9 +36,9 @@ public class Ejercicio2 {
 		 // A. Generación del Tablero de Cifrado: El programa solicitará una "Palabra Clave" al usuario (máximo 25 caracteres, solo letras). Rellenará una matriz 5 X 5 de char carácter a carácter introduciendo la palabra.
 		 //    Si la palabra tiene menos de 25 caracteres, los huecos restantes de la matriz se deben rellenar secuencialmente con caracteres aleatorios en mayúscula entre la 'A' y la 'Z'. Muestra la matriz resultante por consola.
 		
-		int i;
-		int j;
-		int k;
+		int i = 0;
+		int j = 0;
+		int k = 0;
 		
 		boolean esLetra = false;
 		
@@ -73,26 +74,46 @@ public class Ejercicio2 {
 				}
 		
 			}
-		
+				
+		Random aleatorio = new Random();
 		
 		char matriz[][] = new char[5][5];
 		
+		int contadorCaracteres = 0;
+		
+		System.out.println("Tu matríz es esta: ");
 		
 		for(i = 0; i < matriz.length;i++) {
 			
-			for(j = 0;j < matriz[0].length;j++) {
+			for(j = 0; j < matriz[0].length;j++) {
 				
-				for(k = 0;k < palabraClave.length();k++) {
+				
+				int longitudPalabraClave = palabraClave.length();				
+				
+				if(longitudPalabraClave > contadorCaracteres) {
 					
-					matriz[i][j] = palabraClave.charAt(k);
+					char caracterAMostrar = palabraClave.charAt(contadorCaracteres);
+					
+					matriz[i][j] = caracterAMostrar;
+					
+					System.out.print(matriz[i][j] + " ");
 					
 					}
 				
-				System.out.print(matriz[i][j]);
+				contadorCaracteres++;
 				
+				if(longitudPalabraClave < contadorCaracteres) {
+					int generador = aleatorio.nextInt(0, mayuscula.length);
+					
+					matriz[i][j] = mayuscula[generador];
+					
+					System.out.print(matriz[i][j] + " ");
+					}
 				}
-			System.out.println();
+				
+			System.out.println();	
 			}
-	}
+					
+		}
 
 }

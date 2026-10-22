@@ -83,6 +83,8 @@ public class Ejercicio2 {
 		
 		System.out.println("Tu matríz es esta: ");
 		
+		int aumento = 0;
+		
 		for(i = 0; i < matriz.length;i++) {
 			
 			for(j = 0; j < matriz[0].length;j++) {
@@ -105,15 +107,127 @@ public class Ejercicio2 {
 				if(longitudPalabraClave < contadorCaracteres) {
 					int generador = aleatorio.nextInt(0, mayuscula.length);
 					
-					matriz[i][j] = mayuscula[generador];
-					
+					matriz[i][j] = mayuscula[aumento];
+					aumento++;
 					System.out.print(matriz[i][j] + " ");
 					}
 				}
 				
 			System.out.println();	
 			}
+		
+		
+		System.out.println("Si giramos la matríz en 90°, la veríamos asi:");
+		
+		
+		int aux = 4;
+		
+		for(i = 0; i < matriz.length;i++) {
+			
+			for(j = 0;j < matriz[0].length;j++) {
+				
+				if(i == 0) {
 					
+					matriz[i][j] = matriz[aux][0];
+					System.out.print(matriz[i][j] + " ");
+
+					aux--;
+					
+					}
+				}
+			}
+				
+		System.out.println();		
+			
+		aux = 4;
+		
+		for(i = 0; i < matriz.length;i++) {
+			
+			for(j = 0;j < matriz[0].length;j++) {
+				
+				
+				
+				if(i == 1) {
+					
+					matriz[i][j] = matriz[aux][1];
+					System.out.print(matriz[i][j] + " ");
+
+					aux--;
+					
+					}
+				
+				}
+			}
+		
+		System.out.println();
+		
+		aux = 4;
+		
+		for(i = 0; i < matriz.length;i++) {
+			
+			for(j = 0;j < matriz[0].length;j++) {
+				
+				
+				
+				if(i == 2) {
+					
+					matriz[i][j] = matriz[aux][2];
+					System.out.print(matriz[i][j] + " ");
+
+					aux--;
+					
+					}
+				
+				}
+			}
+		
+		System.out.println();
+		
+		aux = 4;
+		
+		for(i = 0; i < matriz.length;i++) {
+			
+			for(j = 0;j < matriz[0].length;j++) {
+				
+				
+				
+				if(i == 3) {
+					
+					matriz[i][j] = matriz[aux][3];
+					System.out.print(matriz[i][j] + " ");
+
+					aux--;
+					
+					}
+				
+				}
+			}
+		
+		
+		System.out.println();
+		
+		aux = 4;
+		
+		for(i = 0; i < matriz.length;i++) {
+			
+			for(j = 0;j < matriz[0].length;j++) {
+				
+				
+				
+				if(i == 4) {
+					
+					matriz[i][j] = matriz[aux][4];
+					System.out.print(matriz[i][j] + " ");
+
+					aux--;
+					
+					}
+				
+				}
+			}
+		
+		
+		
 		}
 
 }

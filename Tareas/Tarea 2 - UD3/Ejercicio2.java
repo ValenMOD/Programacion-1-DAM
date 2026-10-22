@@ -1,5 +1,7 @@
 package valentín;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -107,8 +109,8 @@ public class Ejercicio2 {
 				if(longitudPalabraClave < contadorCaracteres) {
 					int generador = aleatorio.nextInt(0, mayuscula.length);
 					
-					matriz[i][j] = mayuscula[aumento];
-					aumento++;
+					matriz[i][j] = mayuscula[generador];
+					
 					System.out.print(matriz[i][j] + " ");
 					}
 				}
@@ -117,8 +119,30 @@ public class Ejercicio2 {
 			}
 		
 		
-		System.out.println("Si giramos la matríz en 90°, la veríamos asi:");
+		System.out.println("La copia de tu array se ve así:");
 		
+		
+		
+		char matrizCopia[][] = Arrays.copyOf(matriz, matriz.length);
+
+		for (i = 0; i < matriz.length; i++) {
+		    matrizCopia[i] = Arrays.copyOf(matriz[i], matriz[i].length);
+			}
+		
+		for(i = 0; i < matrizCopia.length;i++) {
+			
+			for(j = 0; j < matrizCopia[0].length;j++) {
+				
+				System.out.print(matrizCopia[i][j] + " ");
+				
+				}
+			
+			System.out.println();
+			
+			}
+				
+		
+		System.out.println("El array invertido se ve de esta forma:");
 		
 		int aux = 4;
 		
@@ -128,8 +152,8 @@ public class Ejercicio2 {
 				
 				if(i == 0) {
 					
-					matriz[i][j] = matriz[aux][0];
-					System.out.print(matriz[i][j] + " ");
+					matrizCopia[i][j] = matriz[aux][0];
+					System.out.print(matrizCopia[i][j] + " ");
 
 					aux--;
 					
@@ -149,8 +173,8 @@ public class Ejercicio2 {
 				
 				if(i == 1) {
 					
-					matriz[i][j] = matriz[aux][1];
-					System.out.print(matriz[i][j] + " ");
+					matrizCopia[i][j] = matriz[aux][1];
+					System.out.print(matrizCopia[i][j] + " ");
 
 					aux--;
 					
@@ -171,8 +195,8 @@ public class Ejercicio2 {
 				
 				if(i == 2) {
 					
-					matriz[i][j] = matriz[aux][2];
-					System.out.print(matriz[i][j] + " ");
+					matrizCopia[i][j] = matriz[aux][2];
+					System.out.print(matrizCopia[i][j] + " ");
 
 					aux--;
 					
@@ -193,8 +217,8 @@ public class Ejercicio2 {
 				
 				if(i == 3) {
 					
-					matriz[i][j] = matriz[aux][3];
-					System.out.print(matriz[i][j] + " ");
+					matrizCopia[i][j] = matriz[aux][3];
+					System.out.print(matrizCopia[i][j] + " ");
 
 					aux--;
 					
@@ -216,8 +240,8 @@ public class Ejercicio2 {
 				
 				if(i == 4) {
 					
-					matriz[i][j] = matriz[aux][4];
-					System.out.print(matriz[i][j] + " ");
+					matrizCopia[i][j] = matriz[aux][4];
+					System.out.print(matrizCopia[i][j] + " ");
 
 					aux--;
 					

@@ -44,8 +44,8 @@ public class Jugador {
 			boolean letra = false;
 			boolean digito = false;
 			
-			letra = Character.isLetter(0);
-			digito = Character.isDigit(1);
+			letra = Character.isLetter(codigo.charAt(0));
+			digito = Character.isDigit(codigo.charAt(1));
 			
 			
 			if(letra && digito) {
@@ -65,17 +65,6 @@ public class Jugador {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 		}
-	
-	
-	
-//	
-//	
-//	public void setPuntos(int puntos) {
-//		
-//		if(puntos > 0) {
-//			this.puntos = puntos;
-//			}
-//		}
 	
 	
 	
@@ -99,11 +88,11 @@ public class Jugador {
 		
 	//D. Añadir método actualizarPuntos(int puntos) : Recibe una cantidad de puntos que es sumada a los puntos almacenados.
 	
-	private int actualizarPuntos(int puntos) {
+	public int actualizarPuntos(int nuevosPuntos) {
 		
-		int nuevosPuntos = this.puntos + puntos;
+		puntos = nuevosPuntos + this.puntos;
 		
-		return nuevosPuntos;
+		return puntos;
 	}	
 		
 

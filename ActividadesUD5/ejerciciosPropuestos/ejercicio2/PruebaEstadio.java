@@ -30,7 +30,17 @@ public class PruebaEstadio {
 		 * Buscar un estadio a partir del nombre.
 		 */
 		
+		
+		PruebaMatrizEstadios.estadiosLista[0] = e1;
+		PruebaMatrizEstadios.estadiosLista[1] = e2;
+		PruebaMatrizEstadios.estadiosLista[2] = e3;
+		PruebaMatrizEstadios.estadiosLista[3] = e4;
+		PruebaMatrizEstadios.estadiosLista[4] = e5;
+		
+		
 		int opcion = 0;
+		
+		char opcionSalir = 'N';
 		
 		do {
 			
@@ -67,8 +77,6 @@ public class PruebaEstadio {
 						break;
 						}
 					
-					System.out.println(PruebaMatrizEstadios.estadiosLista.length);
-					
 					Estadio estadioArray = new Estadio();
 						
 					System.out.println();
@@ -89,11 +97,64 @@ public class PruebaEstadio {
 					
 					PruebaMatrizEstadios.mostrarEstadios();
 					
+					System.out.println("Deseas salir? S/N");
+					
+					opcionSalir = lector.next().charAt(0);
+					break;
 					
 					
+					
+				case 2:
+					
+					int capacidad;
+					
+					System.out.println("Indica la capacidad de un estadio y te mostraremos los que tienen una capacidad mayor a esa");
+					
+					capacidad = lector.nextInt();
+					
+					PruebaMatrizEstadios.getEstadioCapacidadMayor(capacidad);
+					
+					System.out.println("Deseas salir? S/N");
+					
+					opcionSalir = lector.next().charAt(0);
+					break;
+					
+					
+					
+				case 3:
+					
+					String ciudad;
+					
+					System.out.println("Indica una ciudad y te mostraré los estadios que pertenecen a ella");
+					
+					ciudad = lector.next();
+					
+					PruebaMatrizEstadios.getEstadiosMismaCiudad(ciudad);
+					
+					System.out.println("Deseas salir? S/N");
+					
+					opcionSalir = lector.next().charAt(0);
+					break;
+					
+
+
+				case 4:	
+					
+					String nombre;
+					
+					System.out.println("Dinos el nombre del estadio y te mostraré su información");
+					
+					nombre = lector.next();
+					
+					PruebaMatrizEstadios.getInfoEstadioXNombre(nombre);
+					
+					System.out.println("Deseas salir? S/N");
+					
+					opcionSalir = lector.next().charAt(0);
+					break;
 				}
 			}
-		while(opcion == 5);
+		while(opcionSalir != 'S');
 	}
 
 }

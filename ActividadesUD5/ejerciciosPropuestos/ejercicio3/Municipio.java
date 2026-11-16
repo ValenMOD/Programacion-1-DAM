@@ -1,5 +1,7 @@
 package ejercicio3;
 
+import java.util.Scanner;
+
 /* Crea una clase llamada Municipio en la que se almacenarán los siguientes atributos:
  * Nombre del Municipio
  * CodigoMunicipio: String con tres caracteres, cuyo valor es un número entre 1 y 999. Si el número no tiene 3 dígitos se rellena con ceros a la izquierda: 004 , 023….
@@ -32,23 +34,23 @@ public class Municipio {
 	
 	public String setCodigoMunicipio(String codigoMunicipio) {
 		
-		if((Integer.parseInt(codigoMunicipio) >= 1 && 999 >= Integer.parseInt(codigoMunicipio)) && codigoMunicipio.length() >= 3) {
+		if((Integer.parseInt(codigoMunicipio) >= 1 && 999 >= Integer.parseInt(codigoMunicipio))) {
 			
 			if(Integer.parseInt(codigoMunicipio) > 0 && 10 > Integer.parseInt(codigoMunicipio)) {
 				
-				this.codigoMunicipio = "00" + codigoMunicipio;
+				this.codigoMunicipio = "00" + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
 				return this.codigoMunicipio;
 				
 				}
 			else if(Integer.parseInt(codigoMunicipio) > 10 && 99 > Integer.parseInt(codigoMunicipio)) {
 							
-					this.codigoMunicipio = "0" + codigoMunicipio;
+					this.codigoMunicipio = "0" + codigoMunicipio.charAt(codigoMunicipio.length() - 2) + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
 					return this.codigoMunicipio;
 					
 				}
 			else {
 				
-				this.codigoMunicipio = codigoMunicipio;
+				this.codigoMunicipio = "" + codigoMunicipio.charAt(codigoMunicipio.length() - 3) + codigoMunicipio.charAt(codigoMunicipio.length() - 2) + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
 				return this.codigoMunicipio;
 				
 				}
@@ -71,13 +73,13 @@ public class Municipio {
 			
 			if(Integer.parseInt(codigoProvincia) >= 1 && 9 >= Integer.parseInt(codigoProvincia)) {
 				
-				this.codigoProvincia = "0" + codigoProvincia;
+				this.codigoProvincia = "0" + codigoProvincia.charAt(codigoProvincia.length() - 1);
 				return this.codigoProvincia;
 				
 				}
 			else {
 				
-				this.codigoProvincia = codigoProvincia;
+				this.codigoProvincia = "" + codigoProvincia.charAt(codigoProvincia.length() - 2) + codigoProvincia.charAt(codigoProvincia.length() - 1);
 				return this.codigoProvincia;
 				
 				}
@@ -126,12 +128,113 @@ public class Municipio {
 	}
 	
 	
+	public Municipio() {}
+	
+	
 	//B. Programar un método toString que pase a String toda la información de un municipio.
 	
 	@Override
 	public String toString() {
 		return "El municipio " + getNombre() + " con el código de municipio " + getCodigoMunicipio() + " y el número de código de provincia " + getCodigoProvincia() + " cuenta con el dígito de control: " + setDigitoControl();
 	}
+	
+	
+	
+	
+	
+	
+	//Comprobar posición libre:
+	
+	public static int primeraPosicionLibre(Municipio[] lista) {
+		
+		boolean posicionLibre = false;
+		int pos = -1;
+		
+		for(int i = 0; i < lista.length; i++) {
+			
+			if(lista[i] != null) {
+				posicionLibre = true;
+				pos = i;
+				break;
+				
+				}
+			
+			}
+		
+		if(!posicionLibre) {
+			
+			return pos;
+			
+			}
+		else {
+			
+			return pos;
+			
+			}
+	}
+
+	public void setNombre(Scanner lector) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String setCodigoMunicipio(Scanner lector) {
+	
+		String codigoMunicipio = lector.nextLine();
+		
+		if((Integer.parseInt(codigoMunicipio) >= 1 && 999 >= Integer.parseInt(codigoMunicipio))) {
+					
+					if(Integer.parseInt(codigoMunicipio) > 0 && 10 > Integer.parseInt(codigoMunicipio)) {
+						
+						this.codigoMunicipio = "00" + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
+						return this.codigoMunicipio;
+						
+						}
+					else if(Integer.parseInt(codigoMunicipio) > 10 && 99 > Integer.parseInt(codigoMunicipio)) {
+									
+							this.codigoMunicipio = "0" + codigoMunicipio.charAt(codigoMunicipio.length() - 2) + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
+							return this.codigoMunicipio;
+							
+						}
+					else {
+						
+						this.codigoMunicipio = "" + codigoMunicipio.charAt(codigoMunicipio.length() - 3) + codigoMunicipio.charAt(codigoMunicipio.length() - 2) + codigoMunicipio.charAt(codigoMunicipio.length() - 1);
+						return this.codigoMunicipio;
+						
+						}
+				
+					}
+				
+				return null;
+			
+	}
+	
+	
+	public String setCodigoProvincia(Scanner lector) {
+		
+		String codigoProvincia = lector.nextLine();
+		
+			if(Integer.parseInt(codigoProvincia) >= 1 && 57 >= Integer.parseInt(codigoProvincia)) {
+				
+				if(Integer.parseInt(codigoProvincia) >= 1 && 9 >= Integer.parseInt(codigoProvincia)) {
+					
+					this.codigoProvincia = "0" + codigoProvincia.charAt(codigoProvincia.length() - 1);
+					return this.codigoProvincia;
+					
+					}
+				else {
+					
+					this.codigoProvincia = "" + codigoProvincia.charAt(codigoProvincia.length() - 2) + codigoProvincia.charAt(codigoProvincia.length() - 1);
+					return this.codigoProvincia;
+					
+					}
+				
+				}
+			
+			return null;
+			
+		}
+
 	
 }
 

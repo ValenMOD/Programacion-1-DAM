@@ -88,16 +88,16 @@ public class Principal {
 						
 						System.out.print("Introduce el nombre del municipio: ");
 						
-						mun.setNombre(lector);
+						mun.setNombre(lector.next());
 						
 						
 						System.out.print("Introduce el código del municipio: ");
 						
-						mun.setCodigoMunicipio(lector);
+						mun.setCodigoMunicipio(lector.next());
 						
 						
 						System.out.print("Introduce el código de la provincia: ");
-						mun.setCodigoProvincia(lector);
+						mun.setCodigoProvincia(lector.next());
 						
 						array[pos] = mun;
 			

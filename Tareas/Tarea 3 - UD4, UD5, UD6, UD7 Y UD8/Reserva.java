@@ -18,12 +18,11 @@ public class Reserva {
 		setCliente(cliente);
 	}
 	
-	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler , float importeFinal) {
+	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler) {
 		setCodigo(codigo);
 		setCliente(cliente);
 		setTarifaDiaria(tarifaDiaria);
 		setDiasAlquiler(diasAlquiler);
-		setImporteFinal(importeFinal);
 	}
 	
 	private int diasParaDevolucion() {

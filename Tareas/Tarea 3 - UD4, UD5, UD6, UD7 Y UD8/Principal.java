@@ -33,6 +33,21 @@ public class Principal {
 		
 		
 		ReservaElectrico r3 = new ReservaElectrico("QWERTY", "Alguien");
-		r3.isIncluyyeCableCarga();
+		System.out.println(r3.isIncluyyeCableCarga());
+		System.out.println(r3.getIva());
+		
+		
+		ReservaFurgoneta f1 = new ReservaFurgoneta("FURG0", "Antonio", 24, 5);
+		f1.setCapacidadKg(45.5035);
+		System.out.println(f1.getCapacidadKg());
+		
+		
+		ReservaTurismo t1 = new ReservaTurismo("T1T2T3", "Yo");
+		System.out.println(t1.getIva());
+		
+		ReservaLujo l1 = new ReservaLujo("V1P", "Famosete", "Pepe");
+		System.out.println(l1.getChoferAsignado());
+		System.out.println(l1.getSeguroPremium());
+		
 	}
 }

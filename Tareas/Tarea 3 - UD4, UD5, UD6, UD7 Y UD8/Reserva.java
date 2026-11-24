@@ -18,6 +18,14 @@ public class Reserva {
 		setCliente(cliente);
 	}
 	
+	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler , float importeFinal) {
+		setCodigo(codigo);
+		setCliente(cliente);
+		setTarifaDiaria(tarifaDiaria);
+		setDiasAlquiler(diasAlquiler);
+		setImporteFinal(importeFinal);
+	}
+	
 	private int diasParaDevolucion() {
 		int diasParaDevolucion = 0;
 		return diasParaDevolucion;

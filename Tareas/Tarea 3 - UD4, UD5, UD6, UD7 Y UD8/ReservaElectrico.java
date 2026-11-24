@@ -14,7 +14,19 @@ public class ReservaElectrico extends Reserva {
 	
 	
 	
+	private boolean incluyyeCableCarga;
 
+	public void setTRUEIncluyyeCableCarga() {
+		incluyyeCableCarga = true;
+	}
+	
+	public void setFALSEIncluyyeCableCarga() {
+		incluyyeCableCarga = false;
+	}
+
+	public boolean isIncluyyeCableCarga() {
+		return incluyyeCableCarga;
+	}
 
 	
 	

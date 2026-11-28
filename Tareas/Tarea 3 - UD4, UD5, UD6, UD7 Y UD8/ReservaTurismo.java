@@ -1,20 +1,24 @@
 package torresValentin;
 
-public class ReservaTurismo extends Reserva {
+import java.time.LocalDate;
 
-	ReservaTurismo(String codigo, String cliente) {
-		super(codigo, cliente);
-		// TODO Auto-generated constructor stub
+public class ReservaTurismo extends Reserva {
+	
+	ReservaTurismo(String codigo, String cliente, float tarifaDiaria, int diasAlquiler, float importeFinal,
+			LocalDate fechaInicio, LocalDate fechaDevolucionPrevista) {
+		super(codigo, cliente, tarifaDiaria, diasAlquiler, fechaInicio, fechaDevolucionPrevista);
+		calcularImporteFinal(importeFinal);
+		
 	}
 
-	
 	@Override
-	public float calcularImporteFinal(Reserva r) {
+	public float calcularImporteFinal() {
 		
-		float tarifa = (r.getTarifaDiaria() * r.getDiasAlquiler());
-		float ivaTarifa = tarifa * r.getIva();
+		float tarifa = this.tarifaDiaria * this.diasAlquiler;
+		float ivaTarifa = tarifa * iva;
 		float tarifaTotal = tarifa * ivaTarifa;
 		return tarifaTotal;
+		
 	}
 	
 }

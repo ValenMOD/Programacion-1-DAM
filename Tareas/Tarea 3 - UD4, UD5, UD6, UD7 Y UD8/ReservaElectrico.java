@@ -28,9 +28,7 @@ public class ReservaElectrico extends Reserva {
 
 	
 	
-	ReservaElectrico(String codigo, String cliente) {
-		super(codigo, cliente);
-	}
+	
 	
 	
 }

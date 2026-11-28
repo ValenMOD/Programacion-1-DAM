@@ -17,19 +17,14 @@ public class Reserva {
 	private boolean estado;
 	private final static float iva = 0.21f;
 	
-	Reserva(String codigo , String cliente) {
-		setCodigo(codigo);
-		setCliente(cliente);
-	}
 	
-	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler , float importeFinal , LocalDate fechaInicio , LocalDate fechaDevolucionPrevista) {
+	
+	Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler , LocalDate fechaInicio) {
 		setCodigo(codigo);
 		setCliente(cliente);
 		setTarifaDiaria(tarifaDiaria);
 		setDiasAlquiler(diasAlquiler);
-		setImporteFinal(importeFinal);
 		setFechaInicio();
-		setFechaDevolucionPrevista(fechaDevolucionPrevista);
 	}
 	
 	
@@ -39,11 +34,11 @@ public class Reserva {
 		return diasParaDevolucion;
 	}
 	
-	public float calcularImporteFinal(Reserva r) {
+	public float calcularImporteFinal() {
 		
-		float tarifa = (r.getTarifaDiaria() * r.getDiasAlquiler());
-		float ivaTarifa = tarifa * r.getIva();
-		float tarifaTotal = tarifa * ivaTarifa;
+		float tarifa = this.tarifaDiaria * this.diasAlquiler;
+		float ivaTarifa = tarifa * iva;
+		float tarifaTotal = tarifa + ivaTarifa;
 		return tarifaTotal;
 		
 	}
@@ -133,7 +128,7 @@ public class Reserva {
 		return fechaDevolucionPrevista;
 	}
 
-	public void setFechaDevolucionPrevista(LocalDate fechaDevolucionPrevista) {
+	public void setFechaDevolucionPrevista() {
 		this.fechaDevolucionPrevista = fechaDevolucionPrevista;
 	}
 	

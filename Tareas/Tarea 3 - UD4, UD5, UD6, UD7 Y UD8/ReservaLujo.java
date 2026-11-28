@@ -1,6 +1,13 @@
 package torresValentin;
 
+import java.time.LocalDate;
+
 public class ReservaLujo extends Reserva {
+
+	ReservaLujo(String codigo, String cliente, float tarifaDiaria, int diasAlquiler, LocalDate fechaInicio) {
+		super(codigo, cliente, tarifaDiaria, diasAlquiler, fechaInicio);
+		// TODO Auto-generated constructor stub
+	}
 
 	private final int seguroPremium = 100;
 	
@@ -24,10 +31,10 @@ public class ReservaLujo extends Reserva {
 
 
 
-	ReservaLujo(String codigo, String cliente, String choferAsignado) {
-		super(codigo, cliente);
-		setChoferAsignado(choferAsignado);
-		// TODO Auto-generated constructor stub
-	}
+//	ReservaLujo(String codigo, String cliente, String choferAsignado) {
+//		super(codigo, cliente);
+//		setChoferAsignado(choferAsignado);
+//		// TODO Auto-generated constructor stub
+//	}
 
 }

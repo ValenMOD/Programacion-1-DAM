@@ -7,11 +7,14 @@ public class ReservaTurismo extends Reserva {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
-	private void calcularImporteFinal() {
-		super()
-		float precio = (getTarifaDiaria() * getDiasAlquiler());
+	public float calcularImporteFinal(Reserva r) {
 		
+		float tarifa = (r.getTarifaDiaria() * r.getDiasAlquiler());
+		float ivaTarifa = tarifa * r.getIva();
+		float tarifaTotal = tarifa * ivaTarifa;
+		return tarifaTotal;
 	}
 	
 }

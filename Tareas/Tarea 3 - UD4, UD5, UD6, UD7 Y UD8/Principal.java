@@ -49,5 +49,8 @@ public class Principal {
 		System.out.println(l1.getChoferAsignado());
 		System.out.println(l1.getSeguroPremium());
 		
+		
+		System.out.println(t1.calcularImporteFinal(t1));
+		
 	}
 }

@@ -1,5 +1,7 @@
 package torresValentin;
 
+import java.time.LocalDate;
+
 public class Reserva {
 
 	private String codigo;
@@ -7,7 +9,9 @@ public class Reserva {
 	private float tarifaDiaria;
 	private int diasAlquiler;
 	private float importeFinal;
-	
+	private float importeFinalReal;
+	private LocalDate fechaInicio;
+	private LocalDate fechaDevolucionPrevista;
 	//Agregar fechas
 	
 	private boolean estado;
@@ -18,19 +22,29 @@ public class Reserva {
 		setCliente(cliente);
 	}
 	
-	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler) {
+	public Reserva(String codigo , String cliente , float tarifaDiaria , int diasAlquiler , float importeFinal , LocalDate fechaInicio , LocalDate fechaDevolucionPrevista) {
 		setCodigo(codigo);
 		setCliente(cliente);
 		setTarifaDiaria(tarifaDiaria);
 		setDiasAlquiler(diasAlquiler);
+		setImporteFinal(importeFinal);
+		setFechaInicio();
+		setFechaDevolucionPrevista(fechaDevolucionPrevista);
 	}
 	
+	
+
 	private int diasParaDevolucion() {
 		int diasParaDevolucion = 0;
 		return diasParaDevolucion;
 	}
 	
-	private void calcularImporteFinal() {
+	public float calcularImporteFinal(Reserva r) {
+		
+		float tarifa = (r.getTarifaDiaria() * r.getDiasAlquiler());
+		float ivaTarifa = tarifa * r.getIva();
+		float tarifaTotal = tarifa * ivaTarifa;
+		return tarifaTotal;
 		
 	}
 	
@@ -93,6 +107,36 @@ public class Reserva {
 		this.importeFinal = importeFinal;
 	}
 
+	
+	
+	public float getImporteFinalReal() {
+		return importeFinalReal;
+	}
+
+	public void setImporteFinalReal(float importeFinalReal) {
+		this.importeFinalReal = importeFinalReal;
+	}
+
+	
+	
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio() {
+		this.fechaInicio = LocalDate.now();
+	}
+
+	
+	
+	public LocalDate getFechaDevolucionPrevista() {
+		return fechaDevolucionPrevista;
+	}
+
+	public void setFechaDevolucionPrevista(LocalDate fechaDevolucionPrevista) {
+		this.fechaDevolucionPrevista = fechaDevolucionPrevista;
+	}
+	
 	
 	
 	public boolean isEstado() {

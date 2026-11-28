@@ -24,7 +24,7 @@ public class Reserva {
 		setCliente(cliente);
 		setTarifaDiaria(tarifaDiaria);
 		setDiasAlquiler(diasAlquiler);
-		setFechaInicio();
+		setFechaInicio(fechaInicio);
 	}
 	
 	
@@ -118,19 +118,21 @@ public class Reserva {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio() {
-		this.fechaInicio = LocalDate.now();
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 	
 	
 	public LocalDate getFechaDevolucionPrevista() {
+		fechaDevolucionPrevista = this.fechaInicio.plusDays(diasAlquiler);
 		return fechaDevolucionPrevista;
 	}
 
-	public void setFechaDevolucionPrevista() {
-		this.fechaDevolucionPrevista = fechaDevolucionPrevista;
-	}
+//	public void setFechaDevolucionPrevista(LocalDate fecha) {
+//		fechaDevolucionPrevista = this.fechaInicio.plusDays(diasAlquiler);
+//		this.fechaDevolucionPrevista = fechaDevolucionPrevista;
+//	}
 	
 	
 	

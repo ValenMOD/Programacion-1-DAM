@@ -53,7 +53,9 @@ public class Principal {
 		
 		
 		Reserva prueba = new Reserva("ACB", "Valen", 50, 2, LocalDate.now());
+		System.out.println(prueba.getFechaInicio());
 		System.out.println(prueba.calcularImporteFinal());
+		System.out.println(prueba.getFechaDevolucionPrevista());
 		
 	}
 }

@@ -150,7 +150,10 @@ public class Reserva {
 		return iva;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "El cliente es: " + this.getCliente() + ". Su código de reserva es: " + this.getCodigo() + ". Rentó el vehiculo por " + this.getDiasAlquiler() + " días a un precio diario de " + this.getTarifaDiaria() + " euros el día " + this.getFechaInicio() + " lo tiene que devolver el día " + this.getFechaDevolucionPrevista() + " y pagar una tarifa de " + this.calcularImporteFinal() + "€.";
+	}
 	
 	
 	

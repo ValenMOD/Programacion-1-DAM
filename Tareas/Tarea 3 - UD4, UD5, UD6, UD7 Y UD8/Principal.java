@@ -57,5 +57,9 @@ public class Principal {
 		System.out.println(prueba.calcularImporteFinal());
 		System.out.println(prueba.getFechaDevolucionPrevista());
 		
+		Reserva prueba2 = new Reserva("ZYX", "Torres", 80, 4, LocalDate.of(2026, 12, 2));
+		System.out.println(prueba);
+		System.out.println(prueba2);
+		
 	}
 }
